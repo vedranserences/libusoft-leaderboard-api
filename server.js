@@ -3,9 +3,10 @@ var sqlite3 = require('sqlite3').verbose();
 var bodyParser = require('body-parser');
 
 var router = express.Router();
+var cors=require('cors');
 var app = express();
 
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -31,6 +32,7 @@ router.post('/game', function (req, res) {
   var points = req.body.points;
   var time = req.body.time;
   db.run("INSERT INTO player VALUES (?, ?,?)", [username, points, time]);
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.json("");
 });
 
