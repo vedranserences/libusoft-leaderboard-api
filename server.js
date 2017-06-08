@@ -26,7 +26,8 @@ router.get('/leaderboard', function (req, res) {
 });
 
 router.post('/game', function (req, res) {
-  console.log('New request received: ')
+  var ip=req.socket.remoteAddress;
+  console.log('New request received ['+ip+']: ');
   console.log(req.body);
   var username = req.body.username;
   var points = req.body.points;
